@@ -33,10 +33,10 @@ try
 	
 	$mail->SMTPDebug = 0;                                 
     $mail->isSMTP();                                      
-    $mail->Host = 'smtp.sendgrid.net';  
+    $mail->Host = 'smtp.gmail.com';  
     $mail->SMTPAuth = true;                               
-    $mail->Username = 'apikey';                 
-    $mail->Password = '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';                           
+    $mail->Username = 'arya_pamungkas_24rpl@student.smktelkom-mlg.sch.id';                 
+    $mail->Password = 'franciersnew';                           
     $mail->SMTPSecure = 'tls';                            
     $mail->Port = 587;     // isi dengan password gmail anda
 	
@@ -45,7 +45,7 @@ try
 	$mail->addAddress($to,'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']'); // isi alamat tujuan email, NB : khusus untuk mengirim dari gmail ke yahoo agak lama
 	//$mail->AddBCC("davidhariyanto08@gmail.com", 'Konfirmasi Withdrawal dari ['.$_SESSION['newid'].']');
 	//$mail->AddBCC("riorzky@gmail.com", 'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']');
-	$mail->setFrom('admin@esandar.co.id', 'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']'); 
+	$mail->setFrom('wbmaster@dev.esandar.co.id', 'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']'); 
 	//$mail->SetFrom('devtest@o2bro.com', 'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']'); 
 	$mail->Subject = 'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']';
 	$mail->addAttachment($att);

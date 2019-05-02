@@ -1,5 +1,5 @@
 <?php
-require_once('../agreement/adminesandar/buktikonfirmasi/tcpdf/tcpdf.php');
+include 'tcpdf/tcpdf.php';
 include('config.php');
 $pdf = new TCPDF('', PDF_UNIT, 'A4', true, 'UTF-8', false);
 //include('../agreement/adminesandar/buktikonfirmasi/config.php');

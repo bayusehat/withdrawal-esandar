@@ -3,8 +3,6 @@
 //ini_set('display_errors', 1);
 
 $sk = '6LcfcqEUAAAAACDh4EbAHO7jkibOk12Mu6h_dlj6';
-
-session_start();
 include('config.php');
 $nama=trim($_POST['nama']);
 $nologin=trim($_POST['nologin']);
@@ -34,10 +32,10 @@ $captcha = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'
 $secret_key = '6LdTjhEUAAAAAE-84wk1jwppAm2ngw6UX22C_pOU'; //masukkan secret key-nya berdasarkan secret key masig-masing saat create api key nya
 $error = 'Periksa kembali captcha yang ada';
 if ($captcha != '') {
-   $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secret_key) . '&response=' . $captcha;   
+   $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($sk) . '&response=' . urlencode($captcha);   
    $recaptcha = file_get_contents($url);
    $recaptcha = json_decode($recaptcha, true);
-   if (!$recaptcha['success']) {
+   if ($recaptcha['success'] == false) {
 	  //echo $error;
 	  echo "<script language='javascript'>";
 	  echo "alert('".$error."')</script>";
@@ -77,7 +75,7 @@ if ($captcha != '') {
    }
 } else {
    echo "<script language='javascript'>";
-   echo "alert('".$error."')</script>";
+   echo "alert('Kosong')</script>";
    echo "<script>window.location='index.php';</script>";
 }
 ?>
