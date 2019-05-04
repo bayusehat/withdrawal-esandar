@@ -31,22 +31,23 @@ $tgl= $tgl->format('Y-m-d H:i:s');
 $captcha = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response']:'';
 $secret_key = '6LdTjhEUAAAAAE-84wk1jwppAm2ngw6UX22C_pOU'; //masukkan secret key-nya berdasarkan secret key masig-masing saat create api key nya
 $error = 'Periksa kembali captcha yang ada';
-if ($captcha != '') {
-   $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($sk) . '&response=' . urlencode($captcha);   
-   $recaptcha = file_get_contents($url);
-   $recaptcha = json_decode($recaptcha, true);
-   if ($recaptcha['success'] == false) {
-	  //echo $error;
-	  echo "<script language='javascript'>";
-	  echo "alert('".$error."')</script>";
-	  echo "<script>window.location='index.php';</script>";
-   } else {
+// if ($captcha != '') {
+//    $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($sk) . '&response=' . urlencode($captcha);   
+//    $recaptcha = file_get_contents($url);
+//    $recaptcha = json_decode($recaptcha, true);
+//    if ($recaptcha['success'] == false) {
+// 	  //echo $error;
+// 	  echo "<script language='javascript'>";
+// 	  echo "alert('".$error."')</script>";
+// 	  echo "<script>window.location='index.php';</script>";
+//    } else {
 		if($total=='IDR'){
 			$insert = mysqli_query($connect,"insert into withdrawal (nama_nasabah, no_login, email, norekbank, namabank, total, nominal_idr,nominal_usd, ip_address, tanggal) 
 			values('$nama','$nologin','$email','$bankaccountnumber','$namabank','$total','$idrnominal','0','".$_SESSION['ip']."','$tgl')");
 
 			if($insert){
 				include('save_to_pdf.php');
+				// echo $_SESSION['sessionpdf'];
 				include('mailtoesandar.php');
 				echo "wait for a second";
 				echo "<script>window.location='finish.php';</script>"; 
@@ -61,7 +62,7 @@ if ($captcha != '') {
 			if($insert){
 				include('save_to_pdf.php');
 				include ('mailtoesandarusd.php');
-				echo "<script>window.location='finish.php';</script>";
+				// echo "<script>window.location='finish.php';</script>";
 			}else{
 				echo "<script>alert('Isian tidak lengkap, harap periksa kembali.');</script>";
 			}
@@ -72,10 +73,10 @@ if ($captcha != '') {
 			echo "alert('Gagal')</script>";
 			echo "<script>window.location='index.php';</script>";
 		}
-   }
-} else {
-   echo "<script language='javascript'>";
-   echo "alert('Kosong')</script>";
-   echo "<script>window.location='index.php';</script>";
-}
+   // }
+// } else {
+//    echo "<script language='javascript'>";
+//    echo "alert('Kosong')</script>";
+//    echo "<script>window.location='index.php';</script>";
+// }
 ?>

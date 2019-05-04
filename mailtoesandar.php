@@ -1,10 +1,10 @@
 <?php
-session_start();
 require_once('PHPmailer/class.phpmailer.php');
 require("PHPmailer/class.smtp.php");
 $mail = new PHPMailer(true);
-$to='info.esandar@gmail.com';
-$att='pdf_withdrawal/'.$_SESSION['sessionpdf'].'.pdf';
+$to='aryabayu23@gmail.com';
+$nama_file = $_SESSION['sessionpdf'];
+$att='pdf_withdrawal/'.$nama_file.'.pdf';
 
 //echo $_SESSION['sessionpdf'];
 
@@ -40,14 +40,14 @@ try
     $mail->SMTPSecure = 'tls';                            
     $mail->Port = 587;     // isi dengan password gmail anda
 	
-	
+	$mail->setFrom('wbmaster@dev.esandar.co.id', 'Konfirmasi Withdrawal dari '); 
 	//$mail->AddReplyTo('david@mss.co.id', 'Esandar');      
-	$mail->addAddress($to,'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']'); // isi alamat tujuan email, NB : khusus untuk mengirim dari gmail ke yahoo agak lama
+	$mail->addAddress($to,'Konfirmasi Withdrawal dari '); // isi alamat tujuan email, NB : khusus untuk mengirim dari gmail ke yahoo agak lama
 	//$mail->AddBCC("davidhariyanto08@gmail.com", 'Konfirmasi Withdrawal dari ['.$_SESSION['newid'].']');
 	//$mail->AddBCC("riorzky@gmail.com", 'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']');
-	$mail->setFrom('wbmaster@dev.esandar.co.id', 'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']'); 
+	
 	//$mail->SetFrom('devtest@o2bro.com', 'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']'); 
-	$mail->Subject = 'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']';
+	$mail->Subject = 'Konfirmasi Withdrawal dari ';
 	$mail->addAttachment($att);
 	$mail->AltBody = 'Untuk melihat email ini, gunakan browser yang kompatibel dengan html';
 	$mail->Body = "<h3 style=\"color:#1d5f9c;\"><b>KONFIRMASI WITHDRAWAL</b></h3>
@@ -78,25 +78,25 @@ try
 	
 	$mail->send();
 	
-	/*
-    if(!$mail->send()) {
-      echo 'Message was not sent.';
-      echo 'Mailer error: ' . $mail->ErrorInfo;
-    } else {
-      echo 'Message has been sent.';
-    }
-    exit();
-    */
+	
+    // if(!$mail->send()) {
+    //   echo 'Message was not sent.';
+    //   echo 'Mailer error: ' . $mail->ErrorInfo;
+    // } else {
+    //   echo 'Message has been sent.';
+    // }
+    // exit();
+    
     
     
 	
 } 
 catch (phpmailerException $e){
-    //print_r($mail);
-    //echo $e;
+    print_r($mail);
+    echo $e;
 }
 catch (Exception $e) {
-    //echo $e;
+    echo $e;
 }
 
 ?>

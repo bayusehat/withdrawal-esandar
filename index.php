@@ -164,7 +164,7 @@ return false//disable key press
 				<tr><td valign="top"></td><td valign="top"></td>
 					<td><input class="checkbox" id="usd" name='total' type='radio' value='USD'> USD <input class="kodeae" id="usdnominal" name="usdnominal" type="text" size="30" placeholder="$"></td>
 				</tr>
-				<tr><td valign="top"><div class="g-recaptcha" data-sitekey="6LcfcqEUAAAAAAHvtcdrsCG4dv6D9Sy20-40WYn-"></div></td></tr>
+				<!-- <tr><td valign="top"><div class="g-recaptcha" data-sitekey="6LcfcqEUAAAAAAHvtcdrsCG4dv6D9Sy20-40WYn-"></div></td></tr> -->
                 <tr>
 					<td align="center" colspan="3"><div id="required"><p><font color="red">*</font> Kolom Wajib Diisi</p></div>
 					<button id="submit" name="submit" type="submit">Submit</button></center></td>

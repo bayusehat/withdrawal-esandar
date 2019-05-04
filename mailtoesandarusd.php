@@ -1,10 +1,10 @@
 <?php
-session_start();
 require_once('PHPmailer/class.phpmailer.php');
 require("PHPmailer/class.smtp.php");
 $mail = new PHPMailer(true);
-$to='info.esandar@gmail.com';
-$att='pdf_withdrawal/'.$_SESSION['sessionpdf'].'.pdf';
+$to='aryabayu23@gmail.com';
+$nama_file = $_SESSION['sessionpdf'];
+$att='pdf_withdrawal/'.$nama_file.'.pdf';
 
 try 
 {
@@ -30,20 +30,20 @@ try
 	
 	$mail->SMTPDebug = 0;                                 
     $mail->isSMTP();                                      
-    $mail->Host = 'smtp.sendgrid.net';  
+    $mail->Host = 'smtp.gmail.com';  
     $mail->SMTPAuth = true;                               
-    $mail->Username = 'apikey';                 
-    $mail->Password = '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';                           
+    $mail->Username = 'arya_pamungkas_24rpl@student.smktelkom-mlg.sch.id';                 
+    $mail->Password = 'franciersnew';                           
     $mail->SMTPSecure = 'tls';                            
     $mail->Port = 587;       // isi dengan password gmail anda
 	
-	
+	$mail->setFrom('wbmaster@dev.esandar.co.id', 'Konfirmasi Withdrawal dari '); 
 	//$mail->AddReplyTo('david@mss.co.id', 'Esandar');      
-	$mail->addAddress($to,'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']'); // isi alamat tujuan email, NB : khusus untuk mengirim dari gmail ke yahoo agak lama
+	$mail->addAddress($to,'Konfirmasi Withdrawal dari'); // isi alamat tujuan email, NB : khusus untuk mengirim dari gmail ke yahoo agak lama
 	//$mail->AddBCC("davidhariyanto08@gmail.com", 'Konfirmasi Withdrawal dari ['.$_SESSION['newid'].']');
-	$mail->setFrom('admin@esandar.co.id', 'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']'); 
-	$mail->Subject = 'Konfirmasi Withdrawal dari ['.$_SESSION['nama'].']';
-	$mail->addAttachment($att);
+	
+	$mail->Subject = 'Konfirmasi Withdrawal dari ';
+	// $mail->addAttachment($att);
 	$mail->AltBody = 'Untuk melihat email ini, gunakan browser yang kompatibel dengan html';
 	$mail->Body = "<h3 style=\"color:#1d5f9c;\"><b>KONFIRMASI WITHDRAWAL</b></h3>
 			
@@ -74,11 +74,11 @@ try
 	
 } 
 catch (phpmailerException $e){
-    //print_r($mail);
-    //echo $e;
+    print_r($mail);
+    echo $e;
 }
 catch (Exception $e) {
-    //echo $e;
+    echo $e;
 }
 
 ?>
